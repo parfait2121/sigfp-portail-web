@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ContactService {
-  PATH_OF_API:string="http://localhost:9090";
+  PATH_OF_API:string="https://fast-island-97649.herokuapp.com";
 
   requestHeader = new HttpHeaders(
     {"No-Auth":"True"}
