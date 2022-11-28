@@ -1,0 +1,112 @@
+
+<div class="main-content">
+  <section class="ftco-section" [@fadeInOut]>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Nous contacter</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-10">
+					<div class="wrapper">
+						<div class="row no-gutters">
+							<div class="col-md-6">
+								<div class="contact-wrap w-100 p-lg-5 p-4">
+									<h3 class="mb-4">Votre Message</h3>
+									<div id="form-message-warning" class="mb-4"></div>
+				      		<div id="form-message-success" class="mb-4">
+				            Your message was sent, thank you!
+				      		</div>
+									<form  class="contactForm" [formGroup]="contactForm" (ngSubmit)="contactSend()" >
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="text" class="form-control"  placeholder="Nom" ngModel formControlName="nom">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="email" class="form-control"  placeholder="Email ou telephone" ngModel formControlName="contact">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="text" class="form-control"  placeholder="Objet" ngModel formControlName="objet">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<textarea  class="form-control"  cols="30" rows="6" placeholder="Message" ngModel formControlName="message"></textarea>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="submit" value="Envoyer" class="btn btn-primary" *ngIf="loading === false" [@fadeInOut] [disabled]="contactForm.invalid">
+                          <div class="spinner-border text-danger" role="status" *ngIf="loading === true" [@fadeInOut]>
+                            <span class="sr-only">Loading...</span>
+                          </div>
+													<div class="submitting"></div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="col-md-6 d-flex align-items-stretch">
+								<div class="info-wrap w-100 p-lg-5 p-4 img">
+									<h3>Notre contact</h3>
+									<p class="mb-4">Nous sommes ouvert pour tout type de conversation et de signalisation de bug dans notre site</p>
+				        	<div class="dbox w-100 d-flex align-items-start">
+				        		<div class="icon d-flex align-items-center justify-content-center">
+				        			<span class="fa fa-map-marker"></span>
+				        		</div>
+				        		<div class="text pl-3">
+					            <p><span>Adresse:</span> Ministere de l'economie et des finances Antaninarenina <br> SIIGFP porte 101</p>
+					          </div>
+				          </div>
+				        	<div class="dbox w-100 d-flex align-items-center">
+				        		<div class="icon d-flex align-items-center justify-content-center">
+				        			<span class="fa fa-phone"></span>
+				        		</div>
+				        		<div class="text pl-3">
+					            <p><span>Phone:</span> <a href="tel://1234567920">+ 231 38 35 674 98</a></p>
+					          </div>
+				          </div>
+				        	<div class="dbox w-100 d-flex align-items-center">
+				        		<div class="icon d-flex align-items-center justify-content-center">
+				        			<span class="fa fa-paper-plane"></span>
+				        		</div>
+				        		<div class="text pl-3">
+					            <p><span>Email:</span> <a href="mailto:dgfag.cifag@gmail.com"></a></p>dgfag.cifag@gmail.com
+					          </div>
+				          </div>
+				        	<div class="dbox w-100 d-flex align-items-center">
+				        		<div class="icon d-flex align-items-center justify-content-center">
+				        			<span class="fa fa-globe"></span>
+				        		</div>
+				        		<div class="text pl-3">
+					            <p style="width: 100px;"><span>Site web :</span> <a href="http://www.mef.gov.mg/page_personnalisee/index/">mef</a></p>
+					          </div>
+				          </div>
+			          </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+
+
+<div id="popup1" class="overlay" *ngIf="notif" [@fadeInOut]>
+  <div class="popup">
+    <h2 class="titleNotif" >Notif :</h2>
+    <a class="close" href="contact#popup1" >&times;</a>
+    <div class="content">
+      {{notif}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<!--
+  <span class="badge text-bg-danger" *ngIf="userName?.invalid && userName?.touched">email is invalid</span>
+<span class="badge text-bg-danger" *ngIf="userPassword?.invalid && userPassword?.touched">required</span>
+
+
+<span class="badge text-bg-danger" *ngIf="notif">
+  {{notif}}
+</span>
+-->
+
+
+
+<div class="main-content" [@fadeInOut]>
+  <div class="section__content section__content--p30">
+      <div class="container-fluid">
+
+
+          <div class="row">
+            <div class="col-md-6 offset-md-3 mr-auto ml-auto">
+              <div class="center">
+                <h1 style="background-color: rgb(0, 85, 255); color: white;"><i class="fa fa-user"></i> Login</h1>
+                <form [formGroup]="loginForm" (ngSubmit)="login()" >
+                  <div class="txt_field">
+                    <input type="text"  name="username" ngModel formControlName="userName" required>
+                    <span> </span>
+                    <label><i class="fa fa-user"></i> Adresse E-mail <span class="badge text-bg-danger" style="background-color: red; color: white;" *ngIf="userName?.invalid && userName?.touched">e-mail invalide <i class="fa fa-times-circle"></i></span>
+                    </label>
+                  </div>
+
+                  <div class="txt_field input-icons" style="width: 93%;">
+                    <i class="fa fa-eye-slash icon" id="eye" onclick="show()"></i>
+
+                    <input type="password" ngModel formControlName="userPassword" id="motdepasse" required >
+                    <span>
+                    </span>
+                    <label><i class="fa fa-lock"></i> Mot de passe <span class="badge text-bg-danger" style="background-color: red; color: white;" *ngIf="userPassword?.invalid && userPassword?.touched">mot de passe requis <i class="fa fa-times-circle"></i></span>
+                    </label>
+                  </div>
+
+
+                  <div class="pass" (click)="forgetPass()">Mot de passe oublier?</div>
+
+                  <div *ngIf="loading === true">
+                    <div class="spinner-border text-primary" style="margin-left: 45%;" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+
+                  <input type="submit" value="Login" [disabled]="loginForm.invalid" class="btn btn-primary" *ngIf="loading === false" >
+                  <div class="signup_link">
+                    Pas encore membre ? <a (click)="inscrire()">S'inscrire</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+
+<div id="popup1" class="overlay" *ngIf="notif" [@fadeInOut]>
+  <div class="popup">
+    <h2 class="titleNotif" >Notif :</h2>
+    <a class="close" href="login#popup1" (click)="notifClear()">&times;</a>
+    <div class="content">
+      {{notif}}
+    </div>
+  </div>
+</div>
+
+
+
+<div id="popup1" class="overlay" *ngIf="activerCompte" [@fadeInOut]>
+  <div class="popup">
+    <h2 class="titleNotif" style="color: red;">Votre compte n'est pas encore activer!</h2>
+    <p>Pour activer votre compte veuillez recuperer le code d'activation dans votre email !</p>
+    <p>le code est composer de nombre a six chiffres que vous devez tapez en bas</p>
+    <div class="content">
+      <form [formGroup]="activeForm" (ngSubmit)="activer()">
+        <input type="number" class="form-control" style="margin: 10px 0;" placeholder="code a six chiffres" ngModel formControlName="code">
+        <input type="submit" class="btn btn-success" value="activer">
+      </form>
+    </div>
+    <p *ngIf="notifActivation" style="color: red;">{{notifActivation}}</p>
+  </div>
+</div>
+
+

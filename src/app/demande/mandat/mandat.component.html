@@ -1,0 +1,129 @@
+
+<div class="card-header">
+  Formulaire pour faire <strong>demande mise a jour rejet ou modification Mandat</strong>
+</div>
+<div class="card-body card-block">
+  <div class="row form-group">
+    <div class="col col-md-3">
+        <label for="select" class=" form-control-label">Type de requete au mandat</label>
+    </div>
+    <div class="col-12 col-md-9">
+        <select name="select" id="select" class="form-control"  (ngModelChange)="changeCity($event)" (ngModel)="categorie">
+            <option  *ngFor="let cat of categorie" [ngValue]="cat"> {{cat.categorieName}}</option>
+        </select>
+    </div>
+  </div>
+
+  <form [formGroup]="insertionTiers" (ngSubmit)="valider()">
+
+  <div class="row form-group">
+    <div class="col col-md-3">
+        <label for="text-input" class=" form-control-label">Objet</label>
+        <div>
+
+        </div>
+    </div>
+    <div class="col-12 col-md-9">
+        <input type="text" id="text-input" name="text-input" placeholder="Objet de votre mandat" value="2022" class="form-control" ngModel formControlName="objet">
+        <small class="help-block form-text" *ngIf="objet?.invalid && objet?.touched" [@fadeInOut]>* Obligatoire</small>
+
+      </div>
+  </div>
+
+
+
+
+  <div class="row form-group">
+      <div class="col col-md-3">
+          <label for="text-input" class=" form-control-label">Nom</label>
+          <div>
+
+          </div>
+      </div>
+      <div class="col-12 col-md-9">
+          <input type="text" id="text-input" name="text-input" placeholder="Nom" class="form-control" ngModel formControlName="nom">
+          <small class="help-block form-text" *ngIf="nom?.invalid && nom?.touched" [@fadeInOut]>* Obligatoire</small>
+      </div>
+  </div>
+
+    <div class="row form-group">
+      <div class="col col-md-3">
+          <label for="email-input" class=" form-control-label">Prenom</label>
+      </div>
+      <div class="col-12 col-md-9">
+          <input type="text" id="email-input" name="email-input" placeholder="Prenom" class="form-control" ngModel formControlName="prenom">
+          <small class="help-block form-text" *ngIf="prenom?.invalid && prenom?.touched" [@fadeInOut]>* Obligatoire</small>
+      </div>
+  </div>
+
+
+
+  <div class="row form-group">
+    <div class="col col-md-3">
+        <label for="text-input" class=" form-control-label">Adresse physique</label>
+        <div>
+
+        </div>
+    </div>
+    <div class="col-12 col-md-9">
+        <input type="text" id="text-input" name="text-input" placeholder="Adresse Maison du tiers a ajouter" class="form-control" ngModel formControlName="adresse">
+        <small class="help-block form-text" *ngIf="adresse?.invalid && adresse?.touched" [@fadeInOut]>* Obligatoire</small>
+    </div>
+  </div>
+
+
+
+  <div class="row form-group">
+      <div class="col col-md-3">
+          <label for="textarea-input" class=" form-control-label">Commentaire</label>
+      </div>
+      <div class="col-12 col-md-9">
+          <textarea name="textarea-input" id="textarea-input" rows="9" placeholder="Ecrivez une description ou commentaire de votre requete" class="form-control" ngModel formControlName="remarque"></textarea>
+          <small class="help-block form-text" *ngIf="remarque?.invalid && remarque?.touched" [@fadeInOut]>* Obligatoire</small>
+      </div>
+  </div>
+
+
+
+  <div class="row form-group">
+      <div class="col col-md-3">
+          <label for="file-multiple-input" class=" form-control-label">Piece jointe</label>
+      </div>
+      <div class="col-12 col-md-9">
+          <input type="file" id="file-multiple-input" (change)="selectFile($event)" name="file-multiple-input" multiple class="form-control-file">
+      </div>
+  </div>
+
+  <div class="row form-group" *ngIf="loading === false">
+    <div class="col col-md-3">
+        <input type="submit" value="Valider" class="btn btn-primary" [disabled]="insertionTiers.invalid">
+    </div>
+
+  </div>
+
+  <div class="row form-group" *ngIf="loading === true" >
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+
+
+
+
+</form>
+</div>
+
+
+
+
+<div id="popup1" class="overlay" *ngIf="notif" [@fadeInOut]>
+  <div class="popup">
+    <h2 class="titleNotif" >Notif :</h2>
+    <a class="close" href="demande/mandat#popup1" (click)="notifClear()">&times;</a>
+    <div class="content">
+      {{notif}}
+    </div>
+  </div>
+</div>
+

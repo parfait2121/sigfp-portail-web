@@ -1,0 +1,13 @@
+a{
+  text-decoration: none;
+}
+
+
+.nonVue {
+  background-color: rgb(236, 229, 229);
+}
+
+.email__item:hover {
+  background-color: rgb(155, 154, 154);
+  border-bottom: 4px solid blue;
+}

@@ -1,0 +1,57 @@
+<div class="main-content">
+  <div class="section__content section__content--p30">
+      <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12" [@fadeInOut]>
+              <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
+                <div class="au-card-title" style="background-image:url('assets/images/bg-title-01.jpg');">
+                    <div class="bg-overlay bg-overlay--blue"></div>
+                    <h3>
+                        <i class="fas fa-bell"></i>Liste formulaire demande</h3>
+                    <button class="au-btn-plus">
+                        <i class="zmdi zmdi-plus"></i>
+                    </button>
+
+                </div>
+                <div class="au-task js-list-load">
+                    <div class="au-task__title">
+                        <p style="color: black;">Voici ci dessous toutes les listes de type de formulaire disponible :</p>
+                    </div>
+                    <div >
+                      <div class="container-fluid">
+                        <div class="row">
+
+                          <div class="col-md-3 col-lg-3 " *ngFor="let demande of listeTypeDemande ">
+                            <div class="card bg-primary mini-box" >
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0 text-light">
+                                      <h1><i style="color: white;" class="fas fa-file-text"></i></h1>
+                                        <p class="text-light">{{demande.nomTypeDemande |uppercase}}</p>
+                                        <footer class="blockquote-footer text-light">
+                                          <br><br>
+                                          <button class="btn btn-danger" (click)="navigateTo(demande.url , demande.idTypeDemande)">Utiliser le formulaire</button>
+                                        </footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </div>
+
+                    </div>
+
+
+
+                    <div class="au-task__footer">
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+          </div>
+
+      </div>
+  </div>
+

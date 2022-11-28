@@ -1,0 +1,195 @@
+<!--
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">SIIGFP</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/admin" *ngIf="userService.roleMatch(['Admin'])">Admin Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/user" *ngIf="userService.roleMatch(['User'])">User Dashboard</a>
+        </li>
+      </ul>
+      <button *ngIf="!isLoggedin()" type="button" class="btn btn-secondary" routerLink="/inscription" style="margin-right: 15px ;">Inscription</button>
+      <button *ngIf="!isLoggedin()" type="button" class="btn btn-success" routerLink="/login">Login</button>
+      <button *ngIf="isLoggedin()" type="button" class="btn btn-danger" (click)="logout()" >Logout</button>
+
+    </div>
+  </div>
+</nav>
+
+-->
+<header class="header-desktop">
+  <div class="section__content section__content--p30">
+      <div class="container-fluid">
+          <div class="header-wrap">
+              <form *ngIf="!isLoggedin()"></form>
+              <form class="form-header" *ngIf="isLoggedin()" [formGroup]="rechercheForm" (ngSubmit)="rechercher()" >
+                  <input class="au-input au-input--xl" ngModel formControlName="motClef"  type="text" name="search" placeholder="Recherche" />
+                  <button class="au-btn--submit" type="submit">
+                      <i class="zmdi zmdi-search"></i>
+                  </button>
+              </form>
+              <!-- isLoggin-->
+              <div class="header-button"  *ngIf="isLoggedin()" >
+                  <div class="noti-wrap" >
+                    <!--
+                    <div class="noti__item js-item-menu">
+                          <i class="zmdi zmdi-comment-more"></i>
+                          <span class="quantity">1</span>
+                          <div class="mess-dropdown js-dropdown">
+                              <div class="mess__title">
+                                  <p>You have 2 news message</p>
+                              </div>
+                              <div class="mess__item">
+                                  <div class="image img-cir img-40">
+                                      <img src="assets/images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+                                  </div>
+                                  <div class="content">
+                                      <h6>Michelle Moreno</h6>
+                                      <p>Have sent a photo</p>
+                                      <span class="time">3 min ago</span>
+                                  </div>
+                              </div>
+                              <div class="mess__item">
+                                  <div class="image img-cir img-40">
+                                      <img src="assets/images/icon/avatar-04.jpg" alt="Diane Myers" />
+                                  </div>
+                                  <div class="content">
+                                      <h6>Diane Myers</h6>
+                                      <p>You are now connected on message</p>
+                                      <span class="time">Yesterday</span>
+                                  </div>
+                              </div>
+                              <div class="mess__footer">
+                                  <a href="#">View all messages</a>
+                              </div>
+                          </div>
+                      </div>
+
+
+                      l
+                    -->
+                    <div class="noti__item js-item-menu">
+                      <i class="zmdi zmdi-email"></i>
+                      <span class="quantity">{{nbrNotifMessage}}</span>
+                      <div class="email-dropdown js-dropdown">
+                          <div class="email__title">
+                              <p>Vous avez {{nbrNotifMessage}} nouveau message</p>
+                          </div>
+                          <div style="overflow-y:scroll ; height: 250px;">
+                            <div class="email__item" *ngFor="let item of message" [ngClass]="{'nonVue': item.vue === false}" routerLink="/detailDemande/{{item.idDemande}}">
+                                <div class="image img-cir img-40">
+                                    <img src="assets/images/icon/avatar-01.png" alt="SIGFP Assitance" />
+                                </div>
+                                <div class="content">
+                                    <p><strong>SIGFP ASSITANCE <span *ngIf="item.vue===false" class="badge text-bg-primary">Nouveau</span>
+                                    </strong>
+                                    </p>
+
+                                    <p>{{item.contenue}}
+
+                                    </p>
+
+                                    <span>{{item.dateNotification |  date: 'dd/MM/yyyy hh:mm'}}</span>
+                                </div>
+                            </div>
+
+                          </div>
+
+                          <div class="email__footer">
+                              <a href="#">See all emails</a>
+                          </div>
+                      </div>
+                  </div>
+
+                      <div class="noti__item js-item-menu">
+                          <i class="zmdi zmdi-notifications"></i>
+                          <span class="quantity">{{nbrNotif}}</span>
+                          <div class="notifi-dropdown js-dropdown">
+                              <div class="notifi__title">
+                                  <p>Vous avez {{nbrNotif}} Notifications</p>
+                              </div>
+                              <div class="notifi__item" *ngFor="let notif of notifAll">
+                                  <div class="bg-c1 img-cir img-40">
+                                      <i class="zmdi zmdi-email-open"></i>
+                                  </div>
+                                  <div class="content">
+                                      <p>{{notif.objet}}</p>
+                                      <span class="date">{{notif.dateNotification | date: 'dd/MM/yyyy hh:mm'}}</span>
+                                  </div>
+                              </div>
+
+                              <div class="notifi__footer">
+                                  <a routerLink="/notification">All notifications</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="account-wrap" >
+                      <div class="account-item clearfix js-item-menu">
+                          <div class="image">
+                              <img src="assets/images/icon/avatar-01.png" alt="John Doe" />
+                          </div>
+                          <div class="content">
+                              <a class="js-acc-btn" href="#">{{userInform.userLastName}}</a>
+                          </div>
+                          <div class="account-dropdown js-dropdown">
+                              <div class="info clearfix">
+                                  <div class="image">
+                                      <a href="#">
+                                          <img src="assets/images/icon/avatar-01.png" alt="{{userInform.userLastName}}" />
+                                      </a>
+                                  </div>
+                                  <div class="content">
+                                      <h5 class="name">
+                                          <a href="#">{{userInform.userLastName}}</a>
+                                      </h5>
+                                      <span class="email">{{userInform.userName}}</span>
+                                  </div>
+                              </div>
+                              <div class="account-dropdown__body">
+                                  <div class="account-dropdown__item">
+                                      <a routerLink="/profil">
+                                          <i class="zmdi zmdi-account"></i>Profil</a>
+                                  </div>
+                                  <div class="account-dropdown__item">
+                                      <a routerLink="/setting">
+                                          <i class="zmdi zmdi-settings"></i>Parametre de votre compte</a>
+                                  </div>
+                                  <div class="account-dropdown__item">
+                                      <a routerLink="/statistique">
+                                          <i class="fa fa-bar-chart-o"></i>Statistique</a>
+                                  </div>
+                              </div>
+                              <div class="account-dropdown__footer">
+                                  <a (click)="logout()" >
+                                      <i class="zmdi zmdi-power"></i>Se deconnecter</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- is not logged in-->
+              <div class="header-button" *ngIf="!isLoggedin()">
+                  <div class="account-wrap">
+                    <button  type="button"  class=" btn btn-primary" routerLink="/inscription" style="margin-right: 15px "><i class="fa  fa-pencil-square-o"></i> Inscription</button>
+                    <button  type="button" class="btn btn-danger" routerLink="/login"> <i class="fa fa-user"></i> Login</button>
+                  </div>
+              </div>
+
+
+          </div>
+      </div>
+  </div>
+</header>

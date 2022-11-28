@@ -45,12 +45,16 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/dist/"
             ],
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "coolAdmin/js/main.js",
+              "coolAdmin/vendor/jquery-3.2.1.min.js"
+            ]
           },
           "configurations": {
             "production": {

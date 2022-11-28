@@ -1,0 +1,50 @@
+<div class="main-content">
+  <div class="section__content section__content--p30">
+      <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12" [@fadeInOut]>
+              <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
+                <div class="au-card-title" style="background-image:url('assets/images/bg-title-01.jpg');">
+                    <div class="bg-overlay bg-overlay--blue"></div>
+                    <h3>
+                        <i class="fas fa-bell"></i>Notification</h3>
+                    <button class="au-btn-plus">
+                        <i class="zmdi zmdi-plus"></i>
+                    </button>
+
+                </div>
+                <div class="au-task js-list-load">
+                    <div class="au-task__title">
+                        <p>Voici ci dessous tout vos notification</p>
+                    </div>
+                    <div class="au-task-list js-scrollbar3">
+                        <div class="au-task__item au-task__item--danger" *ngFor="let notif of allNotif.content" (click)="vue(notif.idNotification)">
+                            <div class="au-task__item-inner">
+                                <h5 class="task">
+                                    <a href="#"> <strong>{{notif.objet}} </strong></a><br><br>
+                                    <p style="color:grey">
+                                      {{notif.contenue}}
+                                    </p>
+                                </h5>
+                                <span class="time">{{notif.dateNotification | date: 'dd/MM/yyyy hh:mm'}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="spinner-border text-primary" style="margin-left: 45%;" role="status" *ngIf="loading===true">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+
+
+                    <div class="au-task__footer">
+                        <button class="btn btn-block btn-primary" (click)="loadMore()" [disabled]="disableLoadMore()">Charger plus de notification</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+          </div>
+
+      </div>
+  </div>
+

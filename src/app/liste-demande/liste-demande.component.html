@@ -1,0 +1,72 @@
+<div class="main-content">
+  <div class="section__content section__content--p30">
+      <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12" [@fadeInOut]>
+              <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
+                <div class="au-card-title" style="background-image:url('assets/images/bg-title-01.jpg');">
+                    <div class="bg-overlay bg-overlay--blue"></div>
+                    <h3>
+                        <i class="fa  fa-list-ul"></i>Listes de mes Demandes</h3>
+                    <button class="au-btn-plus" routerLink="/typeDemande"  >
+                        <i class="zmdi zmdi-plus"></i>
+                    </button>
+                </div>
+
+
+
+                <!-- TABLE-->
+                <div class="row m-t-30">
+                  <div class="col-md-12">
+                      <!-- DATA TABLE-->
+                      <div class="table-responsive m-b-40">
+                          <table class="table table-borderless table-data3">
+                              <thead>
+                                  <tr>
+                                      <th>ticket</th>
+                                      <th>date</th>
+                                      <th>type</th>
+                                      <th>remarque</th>
+                                      <th>status</th>
+                                      <th>Details</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let item of listDemande ">
+                                      <td>{{item.idDemande}}</td>
+                                      <td>{{item.dateDeDemande | date: 'dd/MM/yyyy hh:mm'}}</td>
+                                      <td>{{item.typeDemande[0].nomTypeDemande}}</td>
+                                      <td>{{item.remarque}}</td>
+                                      <td  style="color: rgb(129, 129, 19);" *ngIf="item.status === 0">En attente</td>
+                                      <td  style="color: rgb(129, 129, 19);;"*ngIf="item.status === 1">En traitement</td>
+                                      <td  style="color: rgb(3, 82, 3);"*ngIf="item.status === 2">Resolu</td>
+                                      <td  style="color: rgb(128, 5, 5);"*ngIf="item.status === 3">Rejete</td>
+                                      <td> <button class="btn btn-primary  justify-content-center" (click)="voirDetails(item.idDemande)">Voir details</button></td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                      <!-- END DATA TABLE-->
+                  </div>
+
+                  <nav aria-label="Page navigation example" style="padding-right: 15px;">
+                    <ul class="pagination justify-content-end">
+                      <li class="page-item " [ngClass]="{'disabled':allPageInfo.first}">
+                        <a class="page-link" (click)="loadChargerListeDemande(allPageInfo.number-1)" tabindex="-1" >retour</a>
+                      </li>
+                      <li class="page-item " *ngFor="let item of nbrPage" [ngClass]="{'active':item-1 === allPageInfo.number}"> <a class="page-link" (click)="loadChargerListeDemande(item-1)">{{item}} </a> </li>
+                      <li class="page-item " [ngClass]="{'disabled':allPageInfo.last}">
+                        <a class="page-link" (click)="loadChargerListeDemande(allPageInfo.number+1)">suivant</a>
+                      </li>
+                    </ul>
+                  </nav>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
+      </div>
+      <div>
+      </div>
+</div>
+

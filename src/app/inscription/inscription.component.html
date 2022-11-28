@@ -1,0 +1,109 @@
+
+
+
+
+
+<div class="main-content" [@fadeInOut]>
+  <div class="section__content section__content--p30">
+      <div class="container-fluid">
+
+
+          <div class="row">
+            <div class="col-md-6 offset-md-3 mr-auto ml-auto">
+              <div class="center">
+                <h1 style="background-color: rgb(0, 85, 255); color: white; font-size: 25px;"><i class="fa fa-pencil-square-o"></i> Formulaire d'inscription portail SIIGFP </h1>
+                <form [formGroup]="inscriptiomForm" (ngSubmit)="subscrire()" >
+                  <br>
+                  <div class="input-group ">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01"><i class="fa  fa-briefcase"> </i> Reference</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01" (change)="changeCity($event)" formControlName="roleJSON"  >
+                      <option style="width: 100%;" *ngFor="let item of role" [ngValue]="item.idRole">{{item.desabreviation}}</option>
+                    </select>
+                    <span class="badge text-bg-danger" *ngIf="roleJSON?.invalid && roleJSON?.touched" style="background-color: red; color: white;"> Champs requis <i class="fa fa-times-circle"></i></span>
+                  </div>
+
+
+
+
+
+                  <div class="txt_field">
+                    <input type="text"  name="username" ngModel formControlName="userName" required>
+                    <span></span>
+                    <label><i class="fa fa-envelope"></i> Adresse email <span class="badge text-bg-danger" *ngIf="userName?.invalid && userName?.touched" style="background-color: red; color: white;"> email is invalid <i class="fa fa-times-circle"></i></span></label>
+
+
+                  </div>
+
+                  <div class="txt_field">
+                    <input type="text" ngModel formControlName="userFirstname" required>
+                    <span></span>
+                    <label><i class="fa fa-user"></i> Nom <span class="badge text-bg-danger" *ngIf="userFirstname?.invalid && userFirstname?.touched" style="background-color: red; color: white;"> Champs requis <i class="fa fa-times-circle"></i></span></label>
+                  </div>
+
+                  <div class="txt_field">
+                    <input type="text"  ngModel formControlName="userLastName"   required>
+                    <span></span>
+                    <label><i class="fa fa-user"></i> Prenom <span class="badge text-bg-danger" *ngIf="userLastName?.invalid && userLastName?.touched" style="background-color: red; color: white;"> Champs requis <i class="fa fa-times-circle"></i></span></label>
+                  </div>
+                  <div class="txt_field">
+                    <input type="text"  ngModel formControlName="adresse"   required>
+                    <span></span>
+                    <label><i class="fa  fa-map-marker"></i> Adresse <span class="badge text-bg-danger" *ngIf="adresse?.invalid && adresse?.touched" style="background-color: red; color: white;"> Champs requis <i class="fa fa-times-circle"></i></span></label>
+                  </div>
+
+                  <div class="txt_field">
+                    <input type="number"  ngModel formControlName="phone"   required>
+                    <span></span>
+                    <label><i class="fa fa-phone"></i> Numero Telephone <span class="badge text-bg-danger" *ngIf="phone?.invalid && phone?.touched" style="background-color: red; color: white;"> Champs requis <i class="fa fa-times-circle"></i></span></label>
+                  </div>
+                    <div class="txt_field input-icons" style="width: 90%;" >
+
+                      <i class="fa fa-eye-slash icon" id="eye" onclick="show()"></i>
+
+                      <input type="password" ngModel formControlName="userPassword" id="motdepasse" required >
+                      <span>
+
+                      </span>
+                      <label><i class="fa fa-lock" ></i> Mot de passe
+                        <span class="badge text-bg-danger" *ngIf="userPassword?.invalid && userPassword?.touched" style="background-color: red; color: white;"> Champs requis <i class="fa fa-times-circle"></i></span></label>
+
+                    </div>
+
+                  <br>
+                  <div *ngIf="loading === true">
+                    <div class="spinner-border text-primary" style="margin-left: 45%;" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+
+                  <input class="btn btn-primary" type="submit" value="S'inscrire" [disabled]="inscriptiomForm.invalid" *ngIf="loading === false">
+                  <div class="signup_link">
+                    Deja membre ? <a (click)="login()">Se connecter</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+
+<!-- POP UP-->
+
+<div id="popup1" class="overlay" *ngIf="notif" [@fadeInOut]>
+  <div class="popup">
+    <h2 class="titleNotif" >Notif :</h2>
+    <a class="close" href="inscription#popup1" (click)="notifClear()">&times;</a>
+    <div class="content">
+      {{notif}}
+      <br>
+      <button class="btn btn-primary" (click)="login()" *ngIf="notif==='compte creer avec succes'" >Se connecter</button>
+    </div>
+  </div>
+</div>
+
+

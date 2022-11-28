@@ -1,0 +1,112 @@
+<header class="header-mobile d-block d-lg-none">
+  <div class="header-mobile__bar">
+      <div class="container-fluid">
+          <div class="header-mobile-inner">
+              <a class="logo" href="index.html">
+                  <img src="../../assets/images/icon/logo.png" alt="SIIGFP" />
+              </a>
+              <button class="hamburger hamburger--slider" type="button">
+                  <span class="hamburger-box">
+                      <span class="hamburger-inner"></span>
+                  </span>
+              </button>
+          </div>
+      </div>
+  </div>
+  <nav class="navbar-mobile">
+      <div class="container-fluid">
+          <ul class="navbar-mobile__list list-unstyled">
+
+              <li>
+                  <a class="lien" routerLink="/home">
+                      <i class="fas fa-home"></i>Acceuil</a>
+              </li>
+              <li *ngIf="userinfo">
+                <a class="lien" routerLink="/profil">
+                    <i class="fas fa-user"></i>Profile</a>
+              </li>
+              <li *ngIf="userinfo">
+                <a class="lien" routerLink="/typeDemande">
+                    <i class="fas fa-pencil-square-o"></i>Formulaire Demande</a>
+              </li>
+              <li *ngIf="userinfo">
+                <a class="lien" routerLink="/listeDemande">
+                    <i class="fas fa-list-ul"></i>Liste de mes demandes</a>
+              </li>
+              <li *ngIf="userinfo">
+                <a class="lien" routerLink="/notification">
+                    <i class="fas fa-bell"></i>Notification</a>
+              </li>
+              <li>
+                <a class="lien" routerLink="/contact">
+                    <i class="fas fa-phone"></i>Nous contacter</a>
+              </li>
+
+
+          </ul>
+      </div>
+  </nav>
+</header>
+<!-- END HEADER MOBILE-->
+
+
+<!-- MENU SIDEBAR-->
+<aside class="menu-sidebar d-none d-lg-block">
+  <div class="logo">
+      <a routerLink="/home">
+          <img src="assets/images/icon/logo.png" alt="SIIGFP" />
+      </a>
+  </div>
+  <div class="menu-sidebar__content js-scrollbar1">
+      <nav class="navbar-sidebar">
+          <ul class="list-unstyled navbar__list">
+
+            <li  routerLinkActive="active">
+              <span routerLink="/home">
+                  <i class="fas fa-home"></i>Acceuil</span>
+            </li>
+            <li routerLinkActive="active" *ngIf="userinfo" >
+              <span routerLink="/profil">
+                  <i class="fas fa-user"></i>Profile</span>
+            </li>
+            <li *ngIf="userinfo" routerLinkActive="active">
+              <span routerLink="/typeDemande">
+                  <i class="fas fa-pencil-square-o"></i>Formulaire Demande</span>
+            </li>
+            <li *ngIf="userinfo" routerLinkActive="active">
+              <span routerLink="/listeDemande">
+                  <i class="fa fa-list-ul"></i>Liste de mes demandes</span>
+            </li>
+            <!--
+            <li class=" has-sub" >
+                  <span class="js-arrow" href="#" >
+                      <i class="fas fa-pencil-square-o"></i> Formulaire Demande </span>
+                  <ul class="list-unstyled navbar__sub-list js-sub-list">
+                      <li>
+                          <span href="index.html">Dropdown 1</span>
+                      </li>
+                      <li>
+                          <span href="index2.html">Dropdown 2</span>
+                      </li>
+                      <li>
+                          <span href="index3.html">Dropdown 3</span>
+                      </li>
+                      <li>
+                          <span href="index4.html">Dropdown 4</span>
+                      </li>
+                  </ul>
+            </li>
+            -->
+            <li *ngIf="userinfo" routerLinkActive="active">
+              <span routerLink="/notification">
+                  <i class="fas fa-bell"></i>Notification <i class=" badge text-bg-danger"> {{nbrNotif}}</i></span>
+            </li>
+            <li routerLinkActive="active" >
+              <span routerLink="/contact" >
+                  <i class="fas fa-phone"></i>Nous contacter</span>
+            </li>
+          </ul>
+      </nav>
+  </div>
+</aside>
+
