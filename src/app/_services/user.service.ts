@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   PATH_OF_API:string="https://fast-island-97649.herokuapp.com";
+  //PATH_OF_API:string="http://localhost:9090";
 
   requestHeader = new HttpHeaders(
     {"No-Auth":"True"}

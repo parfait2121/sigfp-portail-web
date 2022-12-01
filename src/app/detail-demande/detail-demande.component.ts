@@ -104,7 +104,7 @@ export class DetailDemandeComponent implements OnInit , OnDestroy {
       this.nouveauMessage();
       this.contactService.updateVueAllMessage(this.idDemande).subscribe(
         (res:any)=> {
-          console.log("ca va");
+          console.log("Vue");
         },
         (err:any)=>{
           console.log(err);
@@ -208,6 +208,7 @@ export class DetailDemandeComponent implements OnInit , OnDestroy {
 
   }
   keepTrack () {
+    console.log((document.getElementById("scrollChat")?.scrollTo));
     if (document.getElementById("scrollChat")?.scrollTop! < 55) {
       if(this.last == false && this.loadingMessage == false) {
         console.log("chargerPlus");
