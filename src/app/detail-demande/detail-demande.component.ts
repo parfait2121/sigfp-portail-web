@@ -208,7 +208,7 @@ export class DetailDemandeComponent implements OnInit , OnDestroy {
 
   }
   keepTrack () {
-    console.log((document.getElementById("scrollChat")?.scrollTo));
+    console.log((document.getElementById("scrollChat")?.scrollTop));
     if (document.getElementById("scrollChat")?.scrollTop! < 55) {
       if(this.last == false && this.loadingMessage == false) {
         console.log("chargerPlus");
@@ -226,6 +226,7 @@ export class DetailDemandeComponent implements OnInit , OnDestroy {
   }
 
   chargerNewMessage (page:number) {
+    console.log("charger ancien message")
     this.loadingMessage = true;
     this.demandeService.chargerPlus(this.idDemande , this.page ,this.limit) .subscribe(
       (response:any)=>{
@@ -246,7 +247,7 @@ export class DetailDemandeComponent implements OnInit , OnDestroy {
   finalLastMessage () {
     if(this.sendAnim === true) {
       document.getElementById("scrollChat")?.scroll({
-        top: document.getElementById("scrollChat")?.scrollHeight,
+        top: document.getElementById("scrollChat")?.scrollHeight! +300,
         left:0,
         behavior:'smooth'
       });
