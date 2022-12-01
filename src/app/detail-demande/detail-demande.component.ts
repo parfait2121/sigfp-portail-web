@@ -152,6 +152,7 @@ export class DetailDemandeComponent implements OnInit , OnDestroy {
 
   onBottom() {
     if(this.messageCharger ==false) {
+      console.log("vo antso onBottom");
       document.getElementById("scrollChat")?.scroll({
         top: document.getElementById("scrollChat")?.scrollHeight,
         left:0,
@@ -246,8 +247,9 @@ export class DetailDemandeComponent implements OnInit , OnDestroy {
 
   finalLastMessage () {
     if(this.sendAnim === true) {
+      console.log("vo antso sendAnum");
       document.getElementById("scrollChat")?.scroll({
-        top: document.getElementById("scrollChat")?.scrollHeight! +300,
+        top: document.getElementById("scrollChat")?.scrollHeight!,
         left:0,
         behavior:'smooth'
       });
